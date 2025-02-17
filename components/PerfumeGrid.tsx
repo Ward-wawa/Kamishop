@@ -1,0 +1,189 @@
+"use client"
+import {useState, useEffect, useRef} from "react";
+import {gsap} from "gsap";
+import {ArrowBigLeft, ArrowBigRight, StopCircle} from "lucide-react";
+import {perfumeType} from "@/lib/Types";
+import PerfumeGridCard from "@/components/PerfumeGridCard";
+
+const PerfumeGrid = (
+    {malePerfumes,femalePerfumes}:{
+        malePerfumes:perfumeType[],
+        femalePerfumes:perfumeType[]
+    }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [disabledButton,setDisabledButton]= useState(false);
+    const [toggled, setToggled] = useState(true);
+
+
+    const toggledStyleMale = {
+        backgroundColor: "rgb(37 99 235)",
+        color: "white",
+        scale: "1.1",
+    }
+    const toggledStyleFemale = {
+        backgroundColor: "rgb(236 72 153)",
+        color: "white",
+        scale: "1.1",
+    }
+    const animateTransition = (direction:string) => {
+        const tl = gsap.timeline();
+
+        tl.to(".per", {
+            x: direction === "next" ? 600 : -600,
+            y: 800,
+            opacity: 0,
+            stagger:0.1,
+            rotationZ: 45,
+            duration: 0.4,
+            ease: "power2.inOut",
+            onComplete: () => {
+                toggled
+                    ? setCurrentIndex((prevIndex) =>
+                        direction === "next"
+                            ? (prevIndex + 4) % malePerfumes.length
+                            : prevIndex === 0
+                                ? malePerfumes.length - 4
+                                : prevIndex - 4
+                    )
+                    : setCurrentIndex((prevIndex) =>
+                        direction === "next"
+                            ? (prevIndex + 4) % femalePerfumes.length
+                            : prevIndex === 0
+                                ? femalePerfumes.length - 4
+                                : prevIndex - 4
+                    );
+                tl.fromTo(
+                    ".per",
+                    { x: direction === "next" ? -600 : 600, opacity: 0, rotationZ: -45,y:800 },
+                    { x: 0, opacity: 1, rotationZ: 0, duration: 0.4, ease: "power2.inOut",y:0,stagger:0.1 }
+                );
+            }
+
+        })
+    };
+
+    const handleArrowClick = (direction:string, e:any) => {
+        setDisabledButton(true);
+        setTimeout(()=>{
+            setDisabledButton(false)
+        },700)
+        const t = gsap.timeline()
+        t.to(e.currentTarget, {
+            rotation: 90,
+            duration: 0.2,
+            ease: "power1.out",
+            scale: 1.7,
+        }).to(e.currentTarget, {
+            rotation: -60   ,
+            duration: 0.1,
+            scale:0.7,
+            ease: "power1.out",
+        }).to(e.currentTarget, {
+            rotation: 0,
+            duration: 0.1,
+            scale: 1,
+            ease: "power1.out",
+        });
+        animateTransition(direction);
+    };
+
+    const handleToggle = ()=>{
+        setToggled(!toggled);
+        setDisabledButton(true);
+        setTimeout(()=>{
+            setDisabledButton(false)
+        },1200)
+        setCurrentIndex(0);
+        gsap.fromTo(".dow",
+            { y:window.innerHeight*2,opacity:0 },
+            {
+                y:0,
+                duration: 1.8,
+                ease: "power2.out",
+                opacity:1
+            }
+        );
+    }
+
+    useEffect(()=>{
+        gsap.fromTo(".dow",
+            { y:window.innerHeight*2,opacity:0 },
+            {
+                y:0,
+                duration: 1.8,
+                ease: "power2.out",
+                opacity:1
+            }
+        );
+    },[])
+
+    return (
+        <>
+            <div className="flex justify-center items-center mt-5">
+                <button
+                    onClick={handleToggle}
+                    disabled={toggled || disabledButton}
+                    style={toggled ? toggledStyleMale : {} }
+                    className="border-2 text-blue-600 border-blue-600 px-14 mr-6 hover:scale-[1.4] transition active:opacity-70">
+                    Male
+                </button>
+                <button
+                    onClick={handleToggle}
+                    disabled={!toggled || disabledButton}
+                    style={toggled ? {} : toggledStyleFemale }
+                    className="border-2 text-pink-500 border-pink-500 px-14 ml-6 hover:scale-[1.4] transition active:opacity-70">
+                    Female
+                </button>
+            </div>
+            {toggled ? (
+                <div className="dow flex justify-between h-[80vh]">
+                    {currentIndex === 0 ? (
+                        <button disabled className="cursor-not-allowed hover:opacity-10 transition">
+                            <StopCircle/>
+                        </button>
+                    ) : (
+                        <button disabled={disabledButton} className="hover:opacity-70 transition"
+                                onClick={(e) => handleArrowClick("prev", e)}>
+                            <ArrowBigLeft/>
+                        </button>
+                    )}
+                    <PerfumeGridCard animationName="per1" perfume={malePerfumes[currentIndex]}/>
+                    <PerfumeGridCard animationName="per2" perfume={malePerfumes[currentIndex + 1]}/>
+                    {malePerfumes.length === currentIndex + 2 ? (
+                        <>
+                            <button disabled className="cursor-not-allowed hover:opacity-10 transition">
+                                <StopCircle/>
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <PerfumeGridCard animationName="per1" perfume={malePerfumes[currentIndex + 2]}/>
+                            <PerfumeGridCard animationName="per2" perfume={malePerfumes[currentIndex+3]}/>
+                            <button disabled={disabledButton} className="hover:opacity-70 transition"
+                                    onClick={(e) => handleArrowClick("next", e)}>
+                                <ArrowBigRight/>
+                            </button>
+                        </>
+                    ) }
+                </div>
+            ) : (
+                <div className="dow flex justify-between h-[80vh]">
+                   <button disabled={disabledButton} className="hover:opacity-70 transition"
+                        onClick={(e) => handleArrowClick("prev", e)}>
+                       <ArrowBigLeft/>
+                   </button>
+                    <PerfumeGridCard animationName="per1" perfume={femalePerfumes[currentIndex]}/>
+                    <PerfumeGridCard animationName="per2" perfume={femalePerfumes[currentIndex + 1]}/>
+                    <PerfumeGridCard animationName="per1" perfume={femalePerfumes[currentIndex + 2]}/>
+                    <PerfumeGridCard animationName="per2" perfume={femalePerfumes[currentIndex + 3]}/>
+                    <button disabled={disabledButton} className="hover:opacity-70 transition"
+                            onClick={(e) => handleArrowClick("next", e)}>
+                        <ArrowBigRight/>
+                    </button>
+                </div>
+            )}
+        </>
+    );
+};
+
+export default PerfumeGrid;
