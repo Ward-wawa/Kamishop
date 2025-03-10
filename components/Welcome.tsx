@@ -3,7 +3,7 @@ import { Dancing_Script } from "next/font/google";
 import {gsap} from "gsap";
 import {useEffect,useRef} from "react";
 
-const dancing = Dancing_Script({weight:"500"})
+const dancing = Dancing_Script({weight: "500", subsets: ["latin"]})
 const Welcome = () => {
     const welcomeRef = useRef<HTMLDivElement>(null);
     useEffect(()=>{

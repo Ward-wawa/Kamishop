@@ -12,7 +12,7 @@ import {signOut} from "next-auth/react";
 if (typeof window !== "undefined") {
     gsap.registerPlugin(Observer);
 }
-const dancing = Dancing_Script({weight:"600"})
+const dancing = Dancing_Script({weight: "600", subsets: ["latin"]})
 
 const Navbar = () => {
     const mainTitleRef = useRef<HTMLDivElement>(null);

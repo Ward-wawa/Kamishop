@@ -5,8 +5,7 @@ import { Dancing_Script } from "next/font/google";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 
-
-const dancing = Dancing_Script({ weight: "500" });
+const dancing = Dancing_Script({weight: "500", subsets: ["latin"]})
 const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
 
     const [disabledButton,setDisabledButton]= useState(false);
