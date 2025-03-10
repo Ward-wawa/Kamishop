@@ -1,7 +1,7 @@
 "use client"
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect} from "react";
 import {gsap} from "gsap";
-import {ArrowBigLeft, ArrowBigRight, StopCircle} from "lucide-react";
+import {ArrowBigLeft, ArrowBigRight} from "lucide-react";
 import {perfumeType} from "@/lib/Types";
 import PerfumeGridCard from "@/components/PerfumeGridCard";
 
@@ -13,7 +13,12 @@ const PerfumeGrid = (
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disabledButton,setDisabledButton]= useState(false);
     const [toggled, setToggled] = useState(true);
+    const perfumesPerPage = 4;
 
+    const displayPerfumes = (perfumes:perfumeType[]) => {
+        const endIndex = Math.min(currentIndex + perfumesPerPage, perfumes.length);
+        return perfumes.slice(currentIndex, endIndex);
+    };
 
     const toggledStyleMale = {
         backgroundColor: "rgb(37 99 235)",
@@ -40,17 +45,15 @@ const PerfumeGrid = (
                 toggled
                     ? setCurrentIndex((prevIndex) =>
                         direction === "next"
-                            ? (prevIndex + 4) % malePerfumes.length
-                            : prevIndex === 0
-                                ? malePerfumes.length - 4
-                                : prevIndex - 4
+                            ? prevIndex + perfumesPerPage >= malePerfumes.length ? 0 : prevIndex + perfumesPerPage
+                            : prevIndex - perfumesPerPage < 0 ? Math.max(malePerfumes.length - perfumesPerPage, 0) : prevIndex - perfumesPerPage
                     )
                     : setCurrentIndex((prevIndex) =>
                         direction === "next"
-                            ? (prevIndex + 4) % femalePerfumes.length
+                            ? (prevIndex + perfumesPerPage) % femalePerfumes.length
                             : prevIndex === 0
-                                ? femalePerfumes.length - 4
-                                : prevIndex - 4
+                                ? femalePerfumes.length - perfumesPerPage
+                                : prevIndex - perfumesPerPage
                     );
                 tl.fromTo(
                     ".per",
@@ -136,46 +139,28 @@ const PerfumeGrid = (
                 </button>
             </div>
             {toggled ? (
-                <div className="dow flex justify-between h-[80vh]">
-                    {currentIndex === 0 ? (
-                        <button disabled className="cursor-not-allowed hover:opacity-10 transition">
-                            <StopCircle/>
-                        </button>
-                    ) : (
-                        <button disabled={disabledButton} className="hover:opacity-70 transition"
-                                onClick={(e) => handleArrowClick("prev", e)}>
-                            <ArrowBigLeft/>
-                        </button>
-                    )}
-                    <PerfumeGridCard animationName="per1" perfume={malePerfumes[currentIndex]}/>
-                    <PerfumeGridCard animationName="per2" perfume={malePerfumes[currentIndex + 1]}/>
-                    {malePerfumes.length === currentIndex + 2 ? (
-                        <>
-                            <button disabled className="cursor-not-allowed hover:opacity-10 transition">
-                                <StopCircle/>
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <PerfumeGridCard animationName="per1" perfume={malePerfumes[currentIndex + 2]}/>
-                            <PerfumeGridCard animationName="per2" perfume={malePerfumes[currentIndex+3]}/>
-                            <button disabled={disabledButton} className="hover:opacity-70 transition"
-                                    onClick={(e) => handleArrowClick("next", e)}>
-                                <ArrowBigRight/>
-                            </button>
-                        </>
-                    ) }
+                <div className="dow flex w-full justify-between h-[80vh]">
+                    <button disabled={disabledButton} className="hover:opacity-70 transition"
+                            onClick={(e) => handleArrowClick("prev", e)}>
+                        <ArrowBigLeft/>
+                    </button>
+                    {displayPerfumes(malePerfumes).map((perfume, index) => (
+                        <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
+                    ))}
+                    <button disabled={disabledButton} className="hover:opacity-70 transition"
+                            onClick={(e) => handleArrowClick("next", e)}>
+                        <ArrowBigRight/>
+                    </button>
                 </div>
             ) : (
-                <div className="dow flex justify-between h-[80vh]">
-                   <button disabled={disabledButton} className="hover:opacity-70 transition"
-                        onClick={(e) => handleArrowClick("prev", e)}>
-                       <ArrowBigLeft/>
-                   </button>
-                    <PerfumeGridCard animationName="per1" perfume={femalePerfumes[currentIndex]}/>
-                    <PerfumeGridCard animationName="per2" perfume={femalePerfumes[currentIndex + 1]}/>
-                    <PerfumeGridCard animationName="per1" perfume={femalePerfumes[currentIndex + 2]}/>
-                    <PerfumeGridCard animationName="per2" perfume={femalePerfumes[currentIndex + 3]}/>
+                <div className="dow flex w-full justify-between h-[80vh]">
+                    <button disabled={disabledButton} className="hover:opacity-70 transition"
+                            onClick={(e) => handleArrowClick("prev", e)}>
+                        <ArrowBigLeft/>
+                    </button>
+                    {displayPerfumes(femalePerfumes).map((perfume, index) => (
+                        <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
+                    ))}
                     <button disabled={disabledButton} className="hover:opacity-70 transition"
                             onClick={(e) => handleArrowClick("next", e)}>
                         <ArrowBigRight/>
