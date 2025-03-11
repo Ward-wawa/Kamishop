@@ -2,22 +2,17 @@
 import PerfumeSelector from "@/components/PerfumeSelector";
 import Welcome from "@/components/Welcome";
 import {toast} from "react-toastify";
+import axiosInstance from "@/utils/axiosConfig";
 
 async function getPerfumes() {
     try {
-        const response = await fetch('http://localhost:3000/api/perfumes', {
-            next: { revalidate: 60 }
-        });
+        const response = await axiosInstance.get('/perfumes')
 
-        if (!response.ok) {
-            toast.error(response.statusText);
-        }
-
-        const data = await response.json();
+        const data = await response.data
         return data.data;
     } catch (error) {
         console.error('Failed to fetch perfumes:', error);
-        throw new Error('Failed to fetch data');
+        toast.error("Failed to fetch data");
     }
 
 }
