@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Roboto } from 'next/font/google';
 import Navbar from "@/components/Navbar";
-import {NotificationProvider ,AuthProvider} from "@/app/Providers";
+import {NotificationProvider, AuthProvider} from "@/components/Providers";
 
 const roboto = Roboto({
     weight: ['400', '700'],
