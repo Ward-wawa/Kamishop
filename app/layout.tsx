@@ -4,6 +4,7 @@ import "./globals.css";
 import { Roboto } from 'next/font/google';
 import Navbar from "@/components/Navbar";
 import {NotificationProvider, AuthProvider} from "@/components/Providers";
+import MobileNav from "@/components/MobileNav";
 
 const roboto = Roboto({
     weight: ['400', '700'],
@@ -36,6 +37,7 @@ export default function RootLayout({
             <NotificationProvider />
             <AuthProvider>
                 <Navbar/>
+                <MobileNav/>
                 {children}
             </AuthProvider>
         </body>

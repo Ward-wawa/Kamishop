@@ -1,7 +1,7 @@
 "use client"
-import { House,LogIn,ListTree,Info,LogOut,Table2 } from 'lucide-react';
+import {House, LogIn, ListTree, Info, LogOut, Table2} from 'lucide-react';
 import Navicon from "@/components/Navicon";
-import { Dancing_Script } from "next/font/google";
+import {Dancing_Script} from "next/font/google";
 import {gsap} from "gsap";
 import {Observer} from "gsap/Observer";
 import {useEffect, useRef} from "react";
@@ -14,9 +14,9 @@ if (typeof window !== "undefined") {
 }
 const dancing = Dancing_Script({weight: "600", subsets: ["latin"]})
 
-const Navbar = () => {
+const MobileNav = () => {
     const mainTitleRef = useRef<HTMLDivElement>(null);
-    const {user,isAuthenticated} = useAuth();
+    const {user, isAuthenticated} = useAuth();
     useEffect(() => {
         if (mainTitleRef.current) {
             gsap.to(mainTitleRef.current, {
@@ -28,24 +28,31 @@ const Navbar = () => {
             });
         }
         gsap.fromTo(".popan3",
-            { y: -220,opacity:0 },
+            {x: -220, opacity: 0},
             {
-                y: 0,
+                x: 0,
                 duration: 1.4,
                 ease: "bounce.out",
-                opacity:1
+                opacity: 1
             }
         );
-    },[])
+    }, [])
     return (
-        <section
-            className="popan3 flex justify-between sticky
-             inset-x-0 top-0 max-md:hidden
-             shadow-white shadow-md items-center z-50 bg-black">
-            <h1 ref={mainTitleRef} className={dancing.className} style={{textAlign:"center",flex:"1.6",boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",textShadow: "0 0 8px rgba(255,255,255,0.8)",fontSize:"50px"}}>
+        <div
+            className="popan3 flex justify-center fixed flex-col inset-y-0 left-0 w-28 md:hidden
+             shadow-white shadow-md z-50 bg-black">
+            <h1 ref={mainTitleRef} className={dancing.className} style={{
+                maxHeight: "4rem",
+                textAlign: "center",
+                flex: "1.6",
+                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",
+                textShadow: "0 0 8px rgba(255,255,255,0.8)",
+                fontSize: "25px",
+                marginTop: "15px"
+            }}>
                 KamiShop
             </h1>
-            <h1 className="absolute ml-5 text-green-600 font-thin flex flex-col justify-center items-center animate-pulse">
+            <h1 className="text-sm text-green-600 font-thin flex flex-col justify-center items-center animate-pulse max-h-16">
                 {isAuthenticated ? (<>
                         <span>
                             Logged In!
@@ -57,28 +64,30 @@ const Navbar = () => {
                 ) : ""}
             </h1>
             <nav
-                className="navbar navbar-expand-lg navbar-dark bg-dark justify-end flex flex-auto">
-                <Link href="/"><Navicon a={10} icon={<House size={30}/>} title="Homepage"/></Link>
+                className="navbar navbar-expand-lg navbar-dark bg-dark justify-start flex flex-auto flex-col">
+                <Link href="/"><Navicon a={10} icon={<House size={25}/>} title="Homepage"/></Link>
                 <Link href="/browse"> <Navicon a={-10} icon={<ListTree size={30}/>} title="Browse"/> </Link>
                 {
                     isAuthenticated
                         ? (
                             <>
-                                <button onClick={()=>{signOut()}}><Navicon icon={<LogOut size={30}/>} title="Log out" a={13}/>
+                                <button onClick={() => {
+                                    signOut()
+                                }}><Navicon icon={<LogOut size={25}/>} title="Log out" a={13}/>
                                 </button>
-                                <Link href="/orders"><Navicon a={13} icon={<Table2 size={30}/>} title="Orders"/> </Link>
+                                <Link href="/orders"><Navicon a={13} icon={<Table2 size={25}/>} title="Orders"/> </Link>
                             </>)
                         : (
                             <>
-                                <Link href="/login"><Navicon a={13} icon={<LogIn size={30}/>} title="Sign In"/> </Link>
+                                <Link href="/login"><Navicon a={13} icon={<LogIn size={25}/>} title="Sign In"/> </Link>
                             </>
                         )
                 }
-                <Link href="/about"> <Navicon a={-7} icon={<Info size={30}/>} title="About"/> </Link>
+                <Link href="/about"> <Navicon a={-7} icon={<Info size={25}/>} title="About"/> </Link>
             </nav>
-        </section>
+        </div>
 
     );
 };
 
-export default Navbar;
+export default MobileNav;
