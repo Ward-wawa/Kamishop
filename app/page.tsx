@@ -19,9 +19,9 @@ export default async function Home() {
         }
   return (
     <>
-      <div className="flex justify-between text-2xl">
+        <div className="flex justify-between items-center text-2xl max-md:flex-col max-md:ml-40">
+            <Welcome/>
           <PerfumeSelector perfumes={perfumes}/>
-          <Welcome/>
       </div>
     </>
   );

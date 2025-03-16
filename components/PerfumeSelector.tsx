@@ -10,14 +10,11 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
 
     const [disabledButton,setDisabledButton]= useState(false);
     const [currentIndex, setCurrentIndex] = useState(15);
-    const imageRef = useRef(null);
 
     const animateTransition = (direction:string) => {
-        if (!imageRef.current) return;
-
         const tl = gsap.timeline();
 
-        tl.to(imageRef.current, {
+        tl.to(".Iref", {
             x: direction === "next" ? 300 : -300,
             y: 800,
             opacity: 1,
@@ -33,7 +30,7 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
                             : prevIndex - 1
                 );
              tl.fromTo(
-                    imageRef.current,
+                 ".Iref",
                     { x: direction === "next" ? -300 : 300, opacity: 0, rotationZ: -45,y:800 },
                     { x: 0, opacity: 1, rotationZ: 0, duration: 0.4, ease: "power2.inOut",y:0 }
                 );
@@ -78,20 +75,30 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
         );
     },[])
     return (
-        <div className="popan2 flex justify-center items-center flex-col ml-40 w-[25%]">
-            <div className="h-[500px] flex justify-center items-center  ">
+        <div className="popan2 max-md:ml-16 flex justify-center items-center flex-col mr-32 w-[70%] h-[500px] ">
+            <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
                 <img
-                    ref={imageRef}
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
-                    width={310}
-                    height={310}
-                    className="mt-10 object-cover object-center"
+                    width={270}
+                    height={270}
+                    className="h-[370] mt-10 object-cover object-center"
                 />
             </div>
-            <h1 className={dancing.className} style={{ fontSize: "34px",zIndex:"30" }}>
-                {perfumes[currentIndex].name}
-            </h1>
+            <div className="Iref h-[180px] flex justify-center items-center md:hidden ">
+                <img
+                    src={`/icons/${perfumes[currentIndex].pic}.png`}
+                    alt="Perfume"
+                    width={200}
+                    height={200}
+                    className="h-[200] w-[60vh] mt-10 mb-8 object-cover object-center"
+                />
+            </div>
+            <div className={dancing.className}>
+                <h1 className="whitespace-nowrap z-30 md:text-[34px] max-md:text-[20px] max-md:mt-3">
+                    {perfumes[currentIndex].name}
+                </h1>
+            </div>
             <div className="flex justify-between w-full">
                 <button disabled={disabledButton} className="hover:opacity-70 transition" onClick={(e) => handleArrowClick("prev", e)}>
                     <ArrowBigLeft size={45} />

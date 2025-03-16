@@ -122,50 +122,85 @@ const PerfumeGrid = (
 
     return (
         <>
-            <div className="flex justify-center items-center mt-5">
+            <div className="flex justify-center items-center mt-5 max-md:w-[75%] max-md:mt-8 max-md:ml-[7vw]">
                 <button
                     onClick={handleToggle}
                     disabled={toggled || disabledButton}
                     style={toggled ? toggledStyleMale : {} }
-                    className="border-2 text-blue-600 border-blue-600 px-14 mr-6 hover:scale-[1.4] transition active:opacity-70">
+                    className="border-2 text-blue-600 border-blue-600 px-14 mr-6 hover:scale-[1.4] transition active:opacity-70
+                     max-md:px-3 max-md:mr-1 max-md:text-[12px]
+                    ">
                     Male
                 </button>
                 <button
                     onClick={handleToggle}
                     disabled={!toggled || disabledButton}
                     style={toggled ? {} : toggledStyleFemale }
-                    className="border-2 text-pink-500 border-pink-500 px-14 ml-6 hover:scale-[1.4] transition active:opacity-70">
+                    className="border-2 text-pink-500 border-pink-500 px-14 ml-6 hover:scale-[1.4] transition active:opacity-70
+                     max-md:px-1 max-md:mr-1 max-md:text-[12px]
+                    ">
                     Female
                 </button>
             </div>
             {toggled ? (
-                <div className="dow flex w-full justify-between h-[80vh]">
-                    <button disabled={disabledButton} className="hover:opacity-70 transition"
-                            onClick={(e) => handleArrowClick("prev", e)}>
-                        <ArrowBigLeft/>
-                    </button>
-                    {displayPerfumes(malePerfumes).map((perfume, index) => (
-                        <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
-                    ))}
-                    <button disabled={disabledButton} className="hover:opacity-70 transition"
-                            onClick={(e) => handleArrowClick("next", e)}>
-                        <ArrowBigRight/>
-                    </button>
-                </div>
+                <>
+                    <div className="dow flex w-full justify-between h-[80vh]">
+                        <button disabled={disabledButton} className="hover:opacity-70 transition max-md:hidden"
+                                onClick={(e) => handleArrowClick("prev", e)}>
+                            <ArrowBigLeft/>
+                        </button>
+                        <div
+                            className="grid grid-cols-4 justify-around gap-4 max-md:gap-[4vw] max-md:grid-cols-2 max-md:ml-10 m-auto">
+                            {displayPerfumes(malePerfumes).map((perfume, index) => (
+                                <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
+                            ))}
+                        </div>
+                        <button disabled={disabledButton} className="hover:opacity-70 transition max-md:hidden"
+                                onClick={(e) => handleArrowClick("next", e)}>
+                            <ArrowBigRight/>
+                        </button>
+                    </div>
+                    <div className="flex justify-around -ml-[10vw] md:hidden mt-9">
+                        <button disabled={disabledButton} className="hover:opacity-70 transition"
+                                onClick={(e) => handleArrowClick("prev", e)}>
+                            <ArrowBigLeft size={32}/>
+                        </button>
+                        <button disabled={disabledButton} className="hover:opacity-70 transition"
+                                onClick={(e) => handleArrowClick("next", e)}>
+                            <ArrowBigRight size={32}/>
+                        </button>
+                    </div>
+
+                </>
             ) : (
-                <div className="dow flex w-full justify-between h-[80vh]">
-                    <button disabled={disabledButton} className="hover:opacity-70 transition"
-                            onClick={(e) => handleArrowClick("prev", e)}>
-                        <ArrowBigLeft/>
-                    </button>
-                    {displayPerfumes(femalePerfumes).map((perfume, index) => (
-                        <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
-                    ))}
-                    <button disabled={disabledButton} className="hover:opacity-70 transition"
-                            onClick={(e) => handleArrowClick("next", e)}>
-                        <ArrowBigRight/>
-                    </button>
-                </div>
+                <>
+                    <div className="dow flex w-full justify-between h-[80vh]">
+                        <button disabled={disabledButton} className="hover:opacity-70 transition max-md:hidden"
+                                onClick={(e) => handleArrowClick("prev", e)}>
+                            <ArrowBigLeft/>
+                        </button>
+                        <div className="grid grid-cols-4 justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
+                            {displayPerfumes(femalePerfumes).map((perfume, index) => (
+                                <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
+                            ))}
+                        </div>
+                        <button disabled={disabledButton} className="hover:opacity-70 transition max-md:hidden"
+                                onClick={(e) => handleArrowClick("next", e)}>
+                            <ArrowBigRight/>
+                        </button>
+                    </div>
+                    <div className="flex justify-around -ml-[10vw] md:hidden mt-9">
+                        <button disabled={disabledButton} className="hover:opacity-70 transition"
+                                onClick={(e) => handleArrowClick("prev", e)}>
+                            <ArrowBigLeft size={32}/>
+                        </button>
+                        <button disabled={disabledButton} className="hover:opacity-70 transition"
+                                onClick={(e) => handleArrowClick("next", e)}>
+                            <ArrowBigRight size={32}/>
+                        </button>
+                    </div>
+
+                </>
             )}
         </>
     );

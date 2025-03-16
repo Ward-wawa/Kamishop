@@ -28,7 +28,7 @@ const Page = async() => {
     const femalePerfumes = await getFemalePerfumes();
     const malePerfumes = await getMalePerfumes();
     return (
-        <div className="w-screen justify-center items-center">
+        <div className="max-md:ml-[16vw] w-screen justify-center items-center">
             <PerfumeGrid malePerfumes={malePerfumes} femalePerfumes={femalePerfumes}/>
         </div>
     );

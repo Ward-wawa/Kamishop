@@ -11,14 +11,14 @@ const Welcome = () => {
             const tl = gsap.timeline();
             setTimeout(()=>{
                 tl.to(welcomeRef.current, {
-                    y: -50,
-                    x: 60,
+                    y: -5,
+                    x: 25,
                     duration: 2,
                     ease: "power1.out",
                     yoyo: true,
                 }).to(welcomeRef.current,{
-                    y: 40,
-                    x: 20,
+                    y: 15,
+                    x: 0,
                     duration: 2,
                     ease: "sine.inOut",
                     yoyo: true,
@@ -36,12 +36,12 @@ const Welcome = () => {
         }
     },[])
     return (
-        <div className="flex flex-col justify-center mr-32">
-            <div ref={welcomeRef} className="flex-col text-center">
+        <div className="flex flex-col justify-center md:ml-32 max-md:mr-32 max-md:mt-12">
+            <div ref={welcomeRef} className="flex-col text-center max-md:w-[200px]">
                 <div className={dancing.className}>
-                    <h1 className="font-extrabold text-5xl">Welcome To Our Page... </h1>
+                    <h1 className="font-extrabold text-5xl max-md:text-[25px] ">Welcome To Our Page... </h1>
                 </div>
-                <p className="text-lg mt-5">
+                <p className="text-lg mt-5 max-md:text-[10px]">
                     We offer you the best of the best!
                     Check Our High Quality Perfumes On the Browse Page!..
                 </p>
