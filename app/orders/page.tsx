@@ -4,6 +4,8 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import axiosInstance from "@/utils/axiosConfig";
 import {IOrder} from "@/models/orderSchema";
 import OrderCard from "@/components/OrderCard";
+
+export const dynamic = 'force-dynamic'
 const Page = async () => {
     const session  = await getServerSession(authOptions)
     const email = session?.user?.email;

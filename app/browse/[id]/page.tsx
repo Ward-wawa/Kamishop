@@ -5,6 +5,8 @@ interface paramsProps {
     id: string;
 }
 
+export const dynamic = 'force-dynamic'
+
 
 const Page = async ({params}:{params:paramsProps}) => {
     async function getPerfume() {

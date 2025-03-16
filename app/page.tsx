@@ -4,21 +4,19 @@ import Welcome from "@/components/Welcome";
 import {toast} from "react-toastify";
 import axiosInstance from "@/utils/axiosConfig";
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
 
-    async function getPerfumes() {
+    let perfumes;
         try {
             const response = await axiosInstance.get('/perfumes')
-
             const data = await response.data
-            return data.data;
+            perfumes = data.data;
         } catch (error) {
             console.error('Failed to fetch perfumes:', error);
             toast.error("Failed to fetch data");
         }
-
-    }
-    const perfumes = await getPerfumes();
   return (
     <>
       <div className="flex justify-between text-2xl">

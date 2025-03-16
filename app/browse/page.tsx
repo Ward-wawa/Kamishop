@@ -3,6 +3,8 @@ import React from 'react';
 import axiosInstance from "@/utils/axiosConfig";
 import PerfumeGrid from "@/components/PerfumeGrid";
 
+export const dynamic = 'force-dynamic'
+
 async function getFemalePerfumes() {
     try {
         const response = await axiosInstance.get('/femaleperf');

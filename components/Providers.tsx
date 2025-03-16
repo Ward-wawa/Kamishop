@@ -20,7 +20,6 @@ export function NotificationProvider() {
             rtl={false}
             pauseOnFocusLoss
             draggable
-            pauseOnHover
             theme="colored"
         />
     );
