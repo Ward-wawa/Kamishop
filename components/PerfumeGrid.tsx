@@ -150,7 +150,7 @@ const PerfumeGrid = (
                             <ArrowBigLeft/>
                         </button>
                         <div className="grid grid-cols-4 justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
-                            {displayPerfumes(femalePerfumes).map((perfume, index) => (
+                            {displayPerfumes(malePerfumes).map((perfume, index) => (
                                 <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
                             ))}
                         </div>
