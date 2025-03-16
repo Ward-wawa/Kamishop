@@ -2,7 +2,7 @@
 import {perfumeType} from "@/lib/Types";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 import { Dancing_Script } from "next/font/google";
-import { useState, useRef, useEffect } from "react";
+import {useState, useEffect} from "react";
 import gsap from "gsap";
 
 const dancing = Dancing_Script({weight: "500", subsets: ["latin"]})

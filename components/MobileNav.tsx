@@ -1,6 +1,5 @@
 "use client"
 import {House, LogIn, ListTree, Info, LogOut, Table2} from 'lucide-react';
-import Navicon from "@/components/Navicon";
 import {Dancing_Script} from "next/font/google";
 import {gsap} from "gsap";
 import {Observer} from "gsap/Observer";

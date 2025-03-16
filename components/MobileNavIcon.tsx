@@ -16,7 +16,6 @@ if (typeof window !== "undefined") {
 const Navicon: React.FC<NavItemProps> = ({icon, title, a}) => {
     const titleRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const iconRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         let observer: any
         observer = Observer.create({
