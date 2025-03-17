@@ -75,16 +75,6 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
             }
         );
     },[])
-    useEffect(() => {
-        ImageUrls.forEach((pic) => {
-            const img = document.createElement('img');
-            img.src = `/icons/${pic}.png`;
-            img.alt = "no"
-            img.width = 10
-            let a = document.querySelector(".preload");
-            a && a.appendChild(img)
-        })
-    }, []);
     return (
         <div
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
@@ -96,7 +86,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
                     height={300}
                     quality={70}
                     priority={true}
-                    src={`/icons/${perfumes[currentIndex].pic}.png`}
+                    src={`/icons/${ImageUrls[currentIndex]}.png`}
                     alt="Perfume"
                     className="h-[60vh] mt-10 object-contain object-center"
                 />
