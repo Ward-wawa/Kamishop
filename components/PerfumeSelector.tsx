@@ -79,21 +79,24 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
         <div
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
-                <img
+                <Image
+                    width={200}
+                    height={200}
+                    quality={70}
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
-                    className="h-[370] mt-10 object-cover object-center"
+                    className="h-[60vh] mt-10 object-cover object-center"
                 />
             </div>
             <div className="Iref h-[180px] flex justify-center items-center md:hidden ">
                 <Image
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                     quality={75}
                     priority
-                    className="w-[50vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
+                    className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
                 />
             </div>
             <div className={dancing.className}>
