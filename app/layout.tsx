@@ -5,6 +5,7 @@ import { Roboto } from 'next/font/google';
 import Navbar from "@/components/Navbar";
 import {NotificationProvider, AuthProvider} from "@/components/Providers";
 import MobileNav from "@/components/MobileNav";
+import Image from "next/image";
 
 const roboto = Roboto({
     weight: ['400', '700'],
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     description: "Perfume E-shop Project",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +40,10 @@ export default function RootLayout({
             <AuthProvider>
                 <Navbar/>
                 <MobileNav/>
+                <video className="absolute opacity-5" width="20" autoPlay loop muted>
+                    <source src="/video/per.webm" type="video/webm"/>
+                    Your browser does not support the video tag.
+                </video>
                 {children}
             </AuthProvider>
         </body>

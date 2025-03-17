@@ -20,8 +20,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
             y: 800,
             opacity: 1,
             rotationZ: 45,
-            duration: 0.4,
-            ease: "power2.inOut",
+            duration: 0.9,
             onComplete: () => {
                 setCurrentIndex((prevIndex) =>
                     direction === "next"
@@ -44,7 +43,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
         setDisabledButton(true);
         setTimeout(()=>{
             setDisabledButton(false)
-        },700)
+        }, 1700)
         const t = gsap.timeline()
      t.to(e.currentTarget, {
             rotation: 90,
@@ -80,7 +79,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
             <div className="preload right-0 absolute opacity-5">
                 {ImageUrls.map(url => (
-                    <Image width={10} height={10} src={`/icons/${url}.png`} key={url} alt=""/>
+                    <Image width={5} height={5} src={`/icons/${url}.png`} key={url} alt=""/>
                 ))}
             </div>
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">

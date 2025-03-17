@@ -69,7 +69,7 @@ const PerfumeGrid = (
         setDisabledButton(true);
         setTimeout(()=>{
             setDisabledButton(false)
-        },700)
+        }, 2000)
         const t = gsap.timeline()
         t.to(e.currentTarget, {
             rotation: 90,
@@ -95,7 +95,7 @@ const PerfumeGrid = (
         setDisabledButton(true);
         setTimeout(()=>{
             setDisabledButton(false)
-        },1200)
+        }, 2000)
         setCurrentIndex(0);
         gsap.fromTo(".dow",
             { y:window.innerHeight*2,opacity:0 },
@@ -149,7 +149,7 @@ const PerfumeGrid = (
                                 onClick={(e) => handleArrowClick("prev", e)}>
                             <ArrowBigLeft/>
                         </button>
-                        <div className="grid grid-cols-4 justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
+                        <div className="grid grid-cols-4 w-[90vw] justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
                             {displayPerfumes(malePerfumes).map((perfume, index) => (
                                 <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
                             ))}
