@@ -7,10 +7,10 @@ import gsap from "gsap";
 import Image from "next/image";
 
 const dancing = Dancing_Script({weight: "500", subsets: ["latin"]})
-const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
+const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes: perfumeType[] }) => {
 
     const [disabledButton,setDisabledButton]= useState(false);
-    const [currentIndex, setCurrentIndex] = useState(15);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const animateTransition = (direction:string) => {
         const tl = gsap.timeline();
@@ -75,17 +75,24 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
             }
         );
     },[])
+    useEffect(() => {
+        ImageUrls.forEach((pic) => {
+            const img = document.createElement('img');
+            img.src = `/icons/${pic}.png`;
+        })
+    }, []);
     return (
         <div
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
                 <Image
-                    width={200}
-                    height={200}
+                    width={300}
+                    height={300}
                     quality={70}
+                    priority={true}
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
-                    className="h-[60vh] mt-10 object-cover object-center"
+                    className="h-[60vh] mt-10 object-contain object-center"
                 />
             </div>
             <div className="Iref h-[180px] flex justify-center items-center md:hidden ">
@@ -95,7 +102,7 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
                     width={200}
                     height={200}
                     quality={75}
-                    priority
+                    priority={true}
                     className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
                 />
             </div>
