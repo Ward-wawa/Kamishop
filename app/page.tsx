@@ -3,6 +3,7 @@ import PerfumeSelector from "@/components/PerfumeSelector";
 import Welcome from "@/components/Welcome";
 import {toast} from "react-toastify";
 import axiosInstance from "@/utils/axiosConfig";
+import Head from "next/head";
 
 export const dynamic = 'force-dynamic'
 

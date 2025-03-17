@@ -4,6 +4,7 @@ import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 import { Dancing_Script } from "next/font/google";
 import {useState, useEffect} from "react";
 import gsap from "gsap";
+import Image from "next/image";
 
 const dancing = Dancing_Script({weight: "500", subsets: ["latin"]})
 const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
@@ -75,31 +76,32 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
         );
     },[])
     return (
-        <div className="popan2 max-md:ml-16 flex justify-center items-center flex-col mr-32 w-[70%] h-[500px] ">
+        <div
+            className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
                 <img
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
-                    width={270}
-                    height={270}
                     className="h-[370] mt-10 object-cover object-center"
                 />
             </div>
             <div className="Iref h-[180px] flex justify-center items-center md:hidden ">
-                <img
+                <Image
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
                     width={200}
                     height={200}
-                    className="h-[200] w-[60vh] mt-10 mb-8 object-cover object-center"
+                    quality={75}
+                    priority
+                    className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
                 />
             </div>
             <div className={dancing.className}>
-                <h1 className="whitespace-nowrap z-30 md:text-[34px] max-md:text-[20px] max-md:mt-3">
+                <h1 className="whitespace-nowrap mt-10 z-30 md:text-[34px] max-md:text-[20px] max-md:mt-20 max-md:mb-2">
                     {perfumes[currentIndex].name}
                 </h1>
             </div>
-            <div className="flex justify-between w-full">
+            <div className="flex justify-between w-[50vh] max-md:w-full">
                 <button disabled={disabledButton} className="hover:opacity-70 transition" onClick={(e) => handleArrowClick("prev", e)}>
                     <ArrowBigLeft size={45} />
                 </button>

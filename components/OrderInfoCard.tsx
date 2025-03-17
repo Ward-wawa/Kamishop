@@ -29,10 +29,10 @@ const OrderInfoCard = (
     if(selectedSize){
         return (
         <>
-            <h1 className="font-extrabold mb-3 text-2xl">Your Order:</h1>
-            <p>You are ordering a {selectedSize}ml bottle of {name} </p>
-            <p>with a fragrance concentration of {concentration}%</p>
-            <p>Price will be: {finalPrice}$</p>
+            <h1 className="font-extrabold mb-3 max-md:mb-0 text-2xl max-md:text-lg">Your Order:</h1>
+            <p className="max-md:text-xs">You are ordering a {selectedSize}ml bottle of {name} </p>
+            <p className="max-md:text-xs">with a fragrance concentration of {concentration}%</p>
+            <p className="max-md:text-xs">Price will be: {finalPrice}$</p>
         </>
         );
     } else return (

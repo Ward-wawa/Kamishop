@@ -24,6 +24,11 @@ export default function LoginForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        if (password.length < 6) {
+            toast.error("Password can't be less than 6 characters!")
+            setLoading(false);
+            return
+        }
 
         try {
             const result = await axiosInstance.post('/auth/register', {
@@ -52,16 +57,17 @@ export default function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="max-w-md max-md:w-[60vw] mx-auto">
             <div className="mb-4">
                 <label htmlFor="name">Name</label>
                 <input
                     type="text"
+                    max={24}
                     id="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 max-md:pr-10 border rounded"
                 />
             </div>
             <div className="mb-4">
@@ -69,10 +75,11 @@ export default function LoginForm() {
                 <input
                     type="email"
                     id="email"
+                    maxLength={48}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 max-md:pr-10 border rounded"
                 />
             </div>
             <div className="mb-8 relative">
@@ -81,15 +88,23 @@ export default function LoginForm() {
                     type={showPass ? "text" : "password"}
                     id="password"
                     value={password}
+                    maxLength={32}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 max-md:pr-10 border rounded"
                 />
-                <span onClick={handlePassShow} className="absolute -right-11 cursor-pointer">
+                <span onClick={handlePassShow}
+                      className="absolute -right-11 cursor-pointer max-md:right-2 max-md:top-8">
                     {showPass ? (
-                        <Eye size={36}/>
+                        <>
+                            <Eye className="max-md:hidden" size={36}/>
+                            <Eye className="md:hidden" color="black" size={28}/>
+                        </>
                     ) : (
-                        <EyeClosed size={36}/>
+                        <>
+                            <EyeClosed className="max-md:hidden" size={36}/>
+                            <EyeClosed className="md:hidden" color="black" size={28}/>
+                        </>
                     )}
                 </span>
             </div>
@@ -101,7 +116,7 @@ export default function LoginForm() {
             >
                 {loading ? (<ClipLoader/>) : 'Register'}
             </button>
-            <div className="mt-4 text-center">
+            <div className="mt-4 text-center max-md:text-sm">
                 <span className="text-gray-600">Already have an account? </span>
                 <Link href="/login" className="text-white hover:underline">
                     Log in here

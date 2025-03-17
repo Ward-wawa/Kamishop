@@ -13,8 +13,8 @@ export default async function RegisterPage() {
 
 
     return (
-        <main className="min-h-screen flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
+        <main className="h-screen max-md:h-[70vh] flex items-center justify-center p-4">
+            <div className="w-full max-w-md max-md:ml-[24vw]">
                 <h1 className="text-2xl font-bold mb-6 text-center">Create Account</h1>
                 <RegisterForm />
             </div>

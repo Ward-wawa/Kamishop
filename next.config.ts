@@ -10,7 +10,20 @@ const nextConfig: NextConfig = {
     },
     cleanDistDir: true,
     productionBrowserSourceMaps: true,
-    output: "standalone"
+    output: "standalone",
+    async headers() {
+        return [
+            {
+                source: '/_next/image(.*)',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable',
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;

@@ -57,9 +57,9 @@ const MobileNav = () => {
                         <span>
                             Logged In!
                         </span>
-                        <span className="font-extrabold">
+                        <p className="font-extrabold text-center mb-3">
                             {`Welcome ${user?.name.toUpperCase()} `}
-                        </span>
+                        </p>
                     </>
                 ) : ""}
             </h1>

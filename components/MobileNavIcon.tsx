@@ -48,15 +48,7 @@ const Navicon: React.FC<NavItemProps> = ({icon, title, a}) => {
                             ease: "power1.out",
                         });
                 }
-            },
-            onHoverEnd: () => {
-                gsap.to(titleRef.current, {
-                    opacity: 0,
-                    x: -10,
-                    duration: 0.3,
-                    ease: "power2.in",
-                });
-            },
+            }
         });
 
         if (containerRef.current) {

@@ -16,7 +16,7 @@ const Slider = ({concentration,setConcentration,setActual}:{
 
     return (
         <div className='flex flex-col justify-center items-center' >
-            <h1 className='text-xl'>Choose your Concentration level: </h1>
+            <h1 className='text-xl max-md:text-sm'>Choose your Concentration level: </h1>
                 <label className='mt-4 max-[500px]:mt-1 text-white mb-5'>{Number(concentration)+25}%</label>
                 <input
                     type="range"

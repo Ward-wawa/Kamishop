@@ -42,10 +42,17 @@ const Navbar = () => {
             className="popan3 flex justify-between sticky
              inset-x-0 top-0 max-md:hidden
              shadow-white shadow-md items-center z-50 bg-black">
-            <h1 ref={mainTitleRef} className={dancing.className} style={{textAlign:"center",flex:"1.6",boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",textShadow: "0 0 8px rgba(255,255,255,0.8)",fontSize:"50px"}}>
+            <h1 ref={mainTitleRef} className={dancing.className} style={{
+                textAlign: "center",
+                flex: "1.6",
+                marginLeft: 50,
+                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",
+                textShadow: "0 0 8px rgba(255,255,255,0.8)",
+                fontSize: "50px"
+            }}>
                 KamiShop
             </h1>
-            <h1 className="absolute ml-5 text-green-600 font-thin flex flex-col justify-center items-center animate-pulse">
+            <h1 className="absolute ml-5 text-md text-green-600 font-thin flex flex-col justify-center items-center animate-pulse">
                 {isAuthenticated ? (<>
                         <span>
                             Logged In!

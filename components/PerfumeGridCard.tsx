@@ -2,6 +2,7 @@ import {perfumeType} from "@/lib/Types";
 import {useEffect} from "react";
 import {gsap} from "gsap";
 import LinkButton from "@/components/LinkButton";
+import Image from "next/image";
 
 const PerfumeGridCard = ({perfume,animationName}:{perfume:perfumeType,animationName:string}) => {
     useEffect(() => {
@@ -27,8 +28,8 @@ const PerfumeGridCard = ({perfume,animationName}:{perfume:perfumeType,animationN
     return (
         <div className="flex flex-col md:justify-between items-center">
             <div className="h-[12vh] md:mt-12 max-md:mb-7">
-                <img className={`${animationName} per mt-10 max-md:w-20`} width={180}
-                     src={`/icons/${perfume.pic}.png`} alt="Perfume"
+                <Image className={`${animationName} per mt-10 max-md:w-20`} width={180} height={180}
+                       src={`/icons/${perfume.pic}.png`} alt="Perfume" quality={60} priority
                 />
             </div>
             <div className="flex flex-col justify-center items-center max-md:mt-5">

@@ -12,6 +12,7 @@ import {toast} from "react-toastify";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
+import Image from "next/image";
 
 const PerfumeCard = ({perfume}:{perfume:perfumeType}) => {
     const {user,isAuthenticated} = useAuth();
@@ -62,12 +63,12 @@ const PerfumeCard = ({perfume}:{perfume:perfumeType}) => {
         );
     },[])
     return (
-        <section className="flex pt-5 justify-around items-center">
-            <div className="entrance1 flex flex-col items-center">
-                <div className="text-3xl mt-2 mb-5">{perfume.name}</div>
-                <div className="flex">
-                    <img
-                        className="w-[300px]"
+        <section className="flex pt-5 justify-around items-center max-md:flex-col max-md:ml-[20vw]">
+            <div className="entrance1 flex flex-col items-center max-md:justify-center">
+                <div className="text-3xl mt-2 mb-5 max-md:text-xl">{perfume.name}</div>
+                <div className="flex max-md:flex-col max-md:justify-center max-md:items-center">
+                    <Image height={80} width={80} quality={80} priority
+                           className="w-[20vw] max-md:w-[45vw] max-md:mb-4"
                         src={`/icons/${perfume.pic}.png`}
                         alt="Picture"/>
                     <Slider concentration={concentrationBar} setConcentration={setConcentrationBar}
@@ -75,7 +76,12 @@ const PerfumeCard = ({perfume}:{perfume:perfumeType}) => {
                 </div>
                 <SizeSelector perfume={perfume} selectedSize={selectedSize} setSelectedSize={setSelectedSize}/>
             </div>
-            <form onSubmit={(e)=>{placeOrder(e);}} className="entrance2 flex flex-col items-center justify-center bg-white text-black px-5 py-4 w-[60vh]">
+            <form onSubmit={(e) => {
+                placeOrder(e);
+            }}
+                  className="entrance2 flex flex-col items-center justify-center bg-white text-black px-5 max-md:px-2 py-4 max-md:py-3 w-[60vh]
+                  max-md:w-[60vw] max-md:mt-7 max-md:text-center max-md:mb-5
+                  ">
                 <OrderInfoCard
                     name={perfume.name}
                     concentration={concentration}
@@ -84,18 +90,20 @@ const PerfumeCard = ({perfume}:{perfume:perfumeType}) => {
                 />
                 {selectedSize ? isAuthenticated ? (
                     <button disabled={loading} type="submit"
-                             className="font-extrabold bg-black rounded-full p-4 mt-10 text-white border-2 border-white
-                hover:bg-white hover:text-black hover:border-black transition w-[40vh] h-[10vh]
+                            className="font-extrabold bg-black rounded-full p-4 mt-10 max-md:mt-5 text-white border-2 border-white
+                hover:bg-white hover:text-black hover:border-black transition w-[20vw] h-[10vh] max-md:w-[40vw]
                 active:scale-[1.2] focus:outline-none">
                         {loading ? (<ClipLoader size={30}/>) : "Order Now !"}
                     </button>
                 ) : (
                     <>
-                        Please create an account or log in to continue...
+                        <p className="max-md:text-xs">
+                            Please create an account or log in to continue...
+                        </p>
                         <Link href="/login">
                             <button
-                                className="font-extrabold bg-black rounded-full p-4 mt-5 text-white border-2 border-white
-                    hover:bg-white hover:text-black hover:border-black transition
+                                className="font-extrabold bg-black rounded-full p-4 mt-5 max-md:mt-3 text-white border-2 border-white
+                    hover:bg-white hover:text-black hover:border-black transition max-md:w-[40vw]
                     active:scale-[1.2] focus:outline-none w-[40vh]">
                                 Log In
                             </button>

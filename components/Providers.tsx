@@ -12,13 +12,12 @@ export const AuthProvider = ({children}:{children:any})=>{
 export function NotificationProvider() {
     return (
         <ToastContainer
-            position="top-left"
-            autoClose={5000}
+            position="top-center"
+            autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
             rtl={false}
-            pauseOnFocusLoss
             draggable
             theme="colored"
         />

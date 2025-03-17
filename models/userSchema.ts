@@ -10,9 +10,13 @@ export interface IUser extends Document {
 }
 
 const userSchema = new mongoose.Schema<IUser>({
-    name: { type: String },
-    email: { type: String, unique: [true,"this email is already in use"] },
-    password: String,
+    name: {type: String, trim: true, required: true, maxlength: 24},
+    email: {type: String, maxlength: 48, required: true, unique: [true, "this email is already in use"]},
+    password: {
+        type: String,
+        required: true,
+        maxlength: 32
+    },
 });
 
 userSchema.pre<IUser>('save', async function (next) {

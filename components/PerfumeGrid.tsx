@@ -159,7 +159,7 @@ const PerfumeGrid = (
                             <ArrowBigRight/>
                         </button>
                     </div>
-                    <div className="flex justify-around -ml-[10vw] md:hidden mt-4">
+                    <div className="flex justify-around -ml-[10vw] md:hidden mt-1">
                         <button disabled={disabledButton} className="hover:opacity-70 transition"
                                 onClick={(e) => handleArrowClick("prev", e)}>
                             <ArrowBigLeft size={32}/>
@@ -188,7 +188,7 @@ const PerfumeGrid = (
                             <ArrowBigRight/>
                         </button>
                     </div>
-                    <div className="flex justify-around -ml-[10vw] md:hidden mt-9">
+                    <div className="flex justify-around -ml-[10vw] md:hidden mt-1">
                         <button disabled={disabledButton} className="hover:opacity-70 transition"
                                 onClick={(e) => handleArrowClick("prev", e)}>
                             <ArrowBigLeft size={32}/>

@@ -21,13 +21,13 @@ const Page = async () => {
     const orders:IOrder[] = await getOrders();
     return (
         <>
-            <div className="container mt-10">
+            <div className="mt-10 max-md:ml-[22vw]">
                 {orders.length>0 ? orders.map((order,index) => (
                     <div key={index}>
                         <OrderCard order={order} index={index} />
                     </div>
                 )) : (
-                    <div className="text-5xl flex justify-center items-center mt-40">
+                    <div className="text-5xl flex justify-center items-center mt-40 max-md:text-2xl">
                         No orders found :(
                     </div>
                 )}
