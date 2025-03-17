@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
+    images: {
+        minimumCacheTTL: 86400,
+        formats: ['image/webp']
+    },
     eslint: {
         ignoreDuringBuilds: true
     },
