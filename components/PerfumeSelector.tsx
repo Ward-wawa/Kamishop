@@ -80,11 +80,16 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
             const img = document.createElement('img');
             img.src = `/icons/${pic}.png`;
             img.alt = "no"
+            img.width = 10
+            let a = document.querySelector(".preload");
+            a && a.appendChild(img)
         })
     }, []);
     return (
         <div
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
+            <div className="preload absolute opacity-0">
+            </div>
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
                 <Image
                     width={300}
