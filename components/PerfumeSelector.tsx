@@ -20,7 +20,8 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
             y: 800,
             opacity: 1,
             rotationZ: 45,
-            duration: 0.9,
+            duration: 0.8,
+            ease: "power2.inOut",
             onComplete: () => {
                 setCurrentIndex((prevIndex) =>
                     direction === "next"
@@ -43,7 +44,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
         setDisabledButton(true);
         setTimeout(()=>{
             setDisabledButton(false)
-        }, 1700)
+        }, 1500)
         const t = gsap.timeline()
      t.to(e.currentTarget, {
             rotation: 90,

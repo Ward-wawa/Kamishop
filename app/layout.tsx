@@ -5,7 +5,6 @@ import { Roboto } from 'next/font/google';
 import Navbar from "@/components/Navbar";
 import {NotificationProvider, AuthProvider} from "@/components/Providers";
 import MobileNav from "@/components/MobileNav";
-import Image from "next/image";
 
 const roboto = Roboto({
     weight: ['400', '700'],

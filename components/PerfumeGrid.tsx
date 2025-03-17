@@ -149,7 +149,8 @@ const PerfumeGrid = (
                                 onClick={(e) => handleArrowClick("prev", e)}>
                             <ArrowBigLeft/>
                         </button>
-                        <div className="grid grid-cols-4 w-[90vw] justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
+                        <div
+                            className="grid grid-cols-4 md:w-[90vw] justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
                             {displayPerfumes(malePerfumes).map((perfume, index) => (
                                 <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
                             ))}
@@ -178,7 +179,8 @@ const PerfumeGrid = (
                                 onClick={(e) => handleArrowClick("prev", e)}>
                             <ArrowBigLeft/>
                         </button>
-                        <div className="grid grid-cols-4 justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
+                        <div
+                            className="grid grid-cols-4 md:w-[90vw] justify-around gap-4 max-md:grid-cols-2 max-md:ml-10">
                             {displayPerfumes(femalePerfumes).map((perfume, index) => (
                                 <PerfumeGridCard key={index} perfume={perfume} animationName={`per${index % 2}`}/>
                             ))}
