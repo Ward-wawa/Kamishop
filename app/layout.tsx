@@ -39,10 +39,6 @@ export default function RootLayout({
             <AuthProvider>
                 <Navbar/>
                 <MobileNav/>
-                <video className="absolute opacity-5" width="20" autoPlay loop muted>
-                    <source src="/video/per.webm" type="video/webm"/>
-                    Your browser does not support the video tag.
-                </video>
                 {children}
             </AuthProvider>
         </body>
