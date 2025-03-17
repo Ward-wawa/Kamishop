@@ -89,11 +89,11 @@ const PerfumeSelector = ({perfumes}:{perfumes:perfumeType[]}) => {
                 <Image
                     src={`/icons/${perfumes[currentIndex].pic}.png`}
                     alt="Perfume"
-                    width={200}
-                    height={200}
+                    width={100}
+                    height={100}
                     quality={75}
                     priority
-                    className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
+                    className="w-[50vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
                 />
             </div>
             <div className={dancing.className}>
