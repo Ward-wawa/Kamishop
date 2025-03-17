@@ -5,12 +5,15 @@ import { Dancing_Script } from "next/font/google";
 import {useState, useEffect} from "react";
 import gsap from "gsap";
 import Image from "next/image";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const dancing = Dancing_Script({weight: "500", subsets: ["latin"]})
 const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes: perfumeType[] }) => {
 
     const [disabledButton,setDisabledButton]= useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isImgLoaded, setIsImgLoaded] = useState(false);
+    const [localSrc, setLocalSrc] = useState("");
 
     const animateTransition = (direction:string) => {
         const tl = gsap.timeline();
@@ -76,35 +79,43 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
         );
     },[])
     useEffect(() => {
-        ImageUrls.forEach((pic) => {
-            const img = document.createElement('img');
-            img.src = `/icons/${pic}.png`;
-        })
-    }, []);
+        const img = document.createElement('img');
+        img.src = `/icons/${ImageUrls[currentIndex]}.png`;
+        img.onload = () => {
+            setLocalSrc(img.src);
+            setIsImgLoaded(true);
+        }
+    }, [ImageUrls[currentIndex]]);
     return (
         <div
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
-                <Image
-                    width={300}
-                    height={300}
-                    quality={70}
-                    priority={true}
-                    src={`/icons/${perfumes[currentIndex].pic}.png`}
-                    alt="Perfume"
-                    className="h-[60vh] mt-10 object-contain object-center"
-                />
+                {!isImgLoaded && (<ClipLoader/>)}
+                {localSrc && (
+                    <Image
+                        width={300}
+                        height={300}
+                        quality={70}
+                        priority={true}
+                        src={`/icons/${perfumes[currentIndex].pic}.png`}
+                        alt="Perfume"
+                        className="h-[60vh] mt-10 object-contain object-center"
+                    />
+                )}
             </div>
             <div className="Iref h-[180px] flex justify-center items-center md:hidden ">
-                <Image
-                    src={`/icons/${perfumes[currentIndex].pic}.png`}
-                    alt="Perfume"
-                    width={200}
-                    height={200}
-                    quality={75}
-                    priority={true}
-                    className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
-                />
+                {!isImgLoaded && (<ClipLoader/>)}
+                {localSrc && (
+                    <Image
+                        src={`/icons/${perfumes[currentIndex].pic}.png`}
+                        alt="Perfume"
+                        width={200}
+                        height={200}
+                        quality={75}
+                        priority={true}
+                        className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
+                    />
+                )}
             </div>
             <div className={dancing.className}>
                 <h1 className="whitespace-nowrap mt-10 z-30 md:text-[34px] max-md:text-[20px] max-md:mt-20 max-md:mb-2">
