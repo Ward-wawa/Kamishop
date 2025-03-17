@@ -78,7 +78,10 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
     return (
         <div
             className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
-            <div className="preload absolute opacity-0">
+            <div className="preload right-0 absolute opacity-5">
+                {ImageUrls.map(url => (
+                    <Image width={10} height={10} src={`/icons/${url}.png`} key={url} alt=""/>
+                ))}
             </div>
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
                 <Image
