@@ -29,7 +29,7 @@ const PerfumeGridCard = ({perfume,animationName}:{perfume:perfumeType,animationN
         <div className="flex flex-col md:justify-between items-center">
             <div className="h-[12vh] md:mt-12 max-md:mb-7">
                 <Image className={`${animationName} per mt-10 max-md:w-20`} width={180} height={180}
-                       src={`/icons/${perfume.pic}.png`} alt="Perfume" quality={60} priority
+                       src={`/icons/${perfume.pic}.webp`} alt="Perfume" quality={60} priority
                 />
             </div>
             <div className="flex flex-col justify-center items-center max-md:mt-5">

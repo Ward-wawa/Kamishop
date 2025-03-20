@@ -69,7 +69,7 @@ const PerfumeCard = ({perfume}:{perfume:perfumeType}) => {
                 <div className="flex max-md:flex-col max-md:justify-center max-md:items-center">
                     <Image height={80} width={80} quality={80} priority
                            className="w-[20vw] max-md:w-[45vw] max-md:mb-4"
-                        src={`/icons/${perfume.pic}.png`}
+                           src={`/icons/${perfume.pic}.webp`}
                         alt="Picture"/>
                     <Slider concentration={concentrationBar} setConcentration={setConcentrationBar}
                             setActual={setConcentration}/>

@@ -102,7 +102,7 @@ const OrderCard = ({order,index}:{
                             height={200}
                             quality="50"
                             className="w-[100px] max-md:w-[19vw]"
-                            src={`/icons/${order.pic}.png`}
+                            src={`/icons/${order.pic}.webp`}
                             alt="Picture"/>
                         <button
                             disabled={loading}

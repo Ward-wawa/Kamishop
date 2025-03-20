@@ -77,21 +77,21 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
     },[])
     return (
         <div
-            className="popan2 max-md:ml-16 flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
+            className="popan2 max-md:ml-16 ml flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
             <div className="Iref h-[450px] flex justify-center items-center max-md:hidden ">
                 <Image
                     width={300}
                     height={300}
                     quality={70}
                     priority={true}
-                    src={`/icons/${ImageUrls[currentIndex]}.png`}
+                    src={`/icons/${ImageUrls[currentIndex]}.webp`}
                     alt="Perfume"
                     className="h-[60vh] mt-10 object-contain object-center"
                 />
             </div>
             <div className="Iref h-[180px] flex justify-center items-center md:hidden ">
                 <Image
-                    src={`/icons/${perfumes[currentIndex].pic}.png`}
+                    src={`/icons/${perfumes[currentIndex].pic}.webp`}
                     alt="Perfume"
                     width={200}
                     height={200}
