@@ -77,13 +77,6 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
         );
     },[])
 
-    useEffect(() => {
-  ImageUrls.forEach((image) => {
-    const img = new window.Image();
-    img.src = `/icons/${image}.webp`;
-  });
-}, []);
-    
     return (
         <div
             className="popan2 max-md:ml-16 ml flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
