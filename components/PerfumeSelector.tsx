@@ -11,6 +11,12 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
 
     const [disabledButton,setDisabledButton]= useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    useEffect(() => {
+  ImageUrls.forEach((img) => {
+    const preload = new window.Image();
+    preload.src = `/icons/${img}.webp`;
+  });
+}, [ImageUrls]);
 
     const animateTransition = (direction:string) => {
         const tl = gsap.timeline();
