@@ -97,7 +97,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
                     width={200}
                     height={200}
                     quality={75}
-                    priority={true}
+                    unoptimized
                     className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
                 />
             </div>
