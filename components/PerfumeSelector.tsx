@@ -11,12 +11,7 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
 
     const [disabledButton,setDisabledButton]= useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
-    useEffect(() => {
-  ImageUrls.forEach((img) => {
-    const preload = new window.Image();
-    preload.src = `/icons/${img}.webp`;
-  });
-}, [ImageUrls]);
+    
 
     const animateTransition = (direction:string) => {
         const tl = gsap.timeline();
@@ -81,6 +76,14 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
             }
         );
     },[])
+
+    useEffect(() => {
+  ImageUrls.forEach((image) => {
+    const img = new window.Image();
+    img.src = `/icons/${image}.webp`;
+  });
+}, []);
+    
     return (
         <div
             className="popan2 max-md:ml-16 ml flex justify-center items-center flex-col max-md:mr-32 w-[70%] h-[67vh] mt-10 ">
@@ -89,7 +92,6 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
                     width={300}
                     height={300}
                     quality={70}
-                    priority={true}
                     src={`/icons/${ImageUrls[currentIndex]}.webp`}
                     alt="Perfume"
                     className="h-[60vh] mt-10 object-contain object-center"
