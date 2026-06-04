@@ -120,6 +120,13 @@ const PerfumeGrid = (
         );
     },[])
 
+        useEffect(() => {
+  ImageUrls.forEach((image) => {
+    const img = new window.Image();
+    img.src = `/icons/${image}.webp`;
+  });
+}, []);
+
     return (
         <>
             <div className="flex justify-center items-center mt-5 max-md:w-[75%] max-md:mt-8 max-md:ml-[7vw]">
