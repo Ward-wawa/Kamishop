@@ -101,6 +101,33 @@ const PerfumeSelector = ({ImageUrls, perfumes}: { ImageUrls: string[], perfumes:
                     className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
                 />
             </div>
+
+            {/*test image preloader*/}
+            <div className="Iref h-[450px] hidden justify-center items-center max-md:hidden ">
+                <Image
+                    width={300}
+                    height={300}
+                    quality={70}
+                    priority={true}
+                    src={`/icons/${ImageUrls[currentIndex === 0 ? perfumes.length-1 : currentIndex - 1]}.webp`}
+                    alt="Perfume"
+                    className="h-[60vh] mt-10 object-contain object-center"
+                />
+            </div>
+            <div className="Iref h-[180px] justify-center items-center hidden ">
+                <Image
+                    src={`/icons/${perfumes[currentIndex === perfumes.length-1 ? 0 : currentIndex+1].pic}.webp`}
+                    alt="Perfume"
+                    width={200}
+                    height={200}
+                    quality={75}
+                    priority={true}
+                    className="w-[60vw] mt-10 mb-8 object-cover object-center max-md:w-[300%] max-md:mb-4"
+                />
+            </div>
+
+
+            
             <div className={dancing.className}>
                 <h1 className="whitespace-nowrap mt-10 z-30 md:text-[34px] max-md:text-[20px] max-md:mt-20 max-md:mb-2">
                     {perfumes[currentIndex].name}
